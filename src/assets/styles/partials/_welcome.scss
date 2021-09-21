@@ -1,9 +1,19 @@
-@import "../variables//variables";
+@import "../variables/variables";
 
 .welcome {
     h1{
         font-weight: 700;
         font-size: 3em;
         color: $font-color;
+    }
+    img{
+        width: 100%;
+        height: auto;
+    }
+    
+    .credits{
+        font-weight: 500;
+        position: relative;
+        left: 4;
     }
 }
