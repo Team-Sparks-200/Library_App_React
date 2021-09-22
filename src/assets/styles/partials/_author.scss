@@ -1,0 +1,40 @@
+@import "../variables/variables";
+
+.NoAuthorList {
+  font-style: italic;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: $no-item-text-color;
+}
+
+.AddAuthor{
+  box-sizing: border-box;
+  cursor: pointer;
+
+  h4{
+    background-color: #1e427e;
+  }
+
+  span{
+    font-size: 1.1em;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+}
+
+.author{
+  box-sizing: border-box;
+  padding-left: 2px;
+
+  li {
+    font-size: 1.5em;
+    font-weight: 500;
+  }
+  .icons {
+    cursor: pointer;
+  }
+
+  :hover{
+    background-color: $author-hover-back-color;
+  }
+}

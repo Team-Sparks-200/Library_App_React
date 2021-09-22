@@ -5,7 +5,7 @@ import Header from "../header/Header";
 const Books: React.FC = () => {
   return (
     <Row>
-      <Header />
+      <Header header='Books'/>
     </Row>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row } from "react-bootstrap";
-import Authors from "../authors/authors";
+import Authors from "../authors/Authors";
 import Books from "../books/books";
 
 const LibraryBody: React.FC = () => {
