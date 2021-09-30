@@ -1,14 +1,15 @@
 @import "../variables/variables";
 
-.NoAuthorList {
+.NoBookList {
   font-style: italic;
   font-size: 1.1em;
   font-weight: 600;
   color: $no-item-text-color;
 }
 
-.AddAuthor{
+.AddBook{
   box-sizing: border-box;
+  padding-left: 6px;
   cursor: pointer;
 
   h4{
@@ -22,12 +23,12 @@
   }
 }
 
-.author{
+.book{
   box-sizing: border-box;
   padding-left: 2px;
 
   li {
-    font-size: 1.5em;
+    font-size: 1.4em;
     font-weight: 500;
   }
   .icons {

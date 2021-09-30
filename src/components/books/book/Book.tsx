@@ -5,8 +5,8 @@ import { IconContext } from "react-icons";
 
 const Book: React.FC = () => {
   return (
-    <ol className="px-1 m-0 book">
-      <Row className="px-1 pt-2 pb-1 ">
+    <ol className="px-0 m-0 book">
+      <Row className="px-2 pt-2 pb-1 ">
         <Col xs="8">
           <li>Madol Doowa</li>
         </Col>

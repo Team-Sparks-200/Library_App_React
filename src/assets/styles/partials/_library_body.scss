@@ -1,6 +1,9 @@
 @import "../variables/variables";
 
 .library-body{
+    .row{flex-direction: column-reverse;}
+    
+
     .header{
         border-bottom: 2px solid #2D3134;
     }

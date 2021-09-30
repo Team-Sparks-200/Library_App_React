@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Row, Container } from "react-bootstrap";
-import Welcome from "./components/welcome/welcome";
-import LibraryBody from "./components/welcome/libraryBody";
+import Welcome from "./components/Welcome";
+import LibraryBody from "./components/LibraryBody";
 
 const LibraryApp: React.FC = () => {
   return (
