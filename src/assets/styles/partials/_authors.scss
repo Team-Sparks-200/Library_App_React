@@ -9,7 +9,6 @@
 
 .AddAuthor{
   box-sizing: border-box;
-  padding-left: 6px;
   cursor: pointer;
 
   h4{
@@ -23,19 +22,19 @@
   }
 }
 
-.author{
-  box-sizing: border-box;
-  padding-left: 2px;
-
-  li {
-    font-size: 1.4em;
-    font-weight: 500;
-  }
+.author {
+  font-size: 1.4em;
+  font-weight: 500;
+  text-transform: capitalize;
   .icons {
     cursor: pointer;
-  }
-
-  :hover{
-    background-color: $author-hover-back-color;
+    opacity: 0;
   }
 }
+  .author:hover{
+    background-color: $author-hover-back-color;
+
+    .icons {
+      opacity: 1;
+    }
+  }
