@@ -6,10 +6,6 @@ type AuthorListProps = {
     authors: IAuthor[] | null
 }
 
-type AuthorListProps = {
-    authors: IAuthor[] | null
-}
-
 const AuthorList: React.FC<AuthorListProps> = (props) => {
     return (
         <Row className='pe-0 me-0 my-0' >

@@ -2,7 +2,6 @@ import React from 'react';
 import {Col, Row} from "react-bootstrap";
 import { FiEdit,FiTrash2 } from "react-icons/fi";
 import { IconContext } from "react-icons";
-import {IAuthor} from "../common/Types";
 
 export interface IAuthor {
     name:string
