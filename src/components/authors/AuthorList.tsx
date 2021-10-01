@@ -1,14 +1,28 @@
 import React from 'react';
 import Author from "./Author";
+import {IAuthor} from "../common/Types";
+import {Col, ListGroup, ListGroupItem, Row} from "react-bootstrap";
 
+type AuthorListProps = {
+    authors: IAuthor[] | null
+}
 
-const AuthorList: React.FC = () => {
+const AuthorList: React.FC<AuthorListProps> = (props) => {
     return (
-        <div>
-            <Author />
-            <Author />
-            <Author />
-        </div>
+        <Row className='pe-0 me-0 my-0' >
+            <Col xs={12} className='pe-0 me-0'>
+                {props.authors && <ListGroup>
+                    {props.authors.map((author:IAuthor, index:number) =>{
+                        return (
+                            <ListGroup.Item key={index} className='border-0 px-0 me-0 py-0' >
+                                <Author author={author} index={index}/>
+                            </ListGroup.Item>
+                        )
+                    })
+                    }
+                </ListGroup>}
+            </Col>
+        </Row>
     );
 };
 

@@ -3,10 +3,15 @@ import {Col, Row} from "react-bootstrap";
 import { FiPlus } from "react-icons/fi";
 import { IconContext } from "react-icons";
 
-const AddAuthor: React.FC = () => {
+type AddAuthorProps = {
+    onAddClick : (clicked: boolean) => void
+}
+
+
+const AddAuthor: React.FC<AddAuthorProps> = (props) => {
     return (
-      <Row xs={2} className="AddAuthor mt-3">
-        <Col xs={12} className="px-0">
+      <Row xs={3} className=" mt-3" onClick={() => props.onAddClick(true)}>
+        <Col xs={3} className="px-0 AddAuthor">
           <IconContext.Provider
             value={{
               color: "blue",
