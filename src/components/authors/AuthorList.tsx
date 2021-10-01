@@ -2,6 +2,9 @@ import React from 'react';
 import Author, {IAuthor} from "./Author";
 import {Col, ListGroup, ListGroupItem, Row} from "react-bootstrap";
 
+type AuthorListProps = {
+    authors: IAuthor[] | null
+}
 
 type AuthorListProps = {
     authors: IAuthor[] | null
