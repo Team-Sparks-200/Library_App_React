@@ -11,7 +11,7 @@ type AddAuthorProps = {
 const AddAuthor: React.FC<AddAuthorProps> = (props) => {
     return (
       <Row xs={3} className=" mt-3" onClick={() => props.onAddClick(true)}>
-        <Col xs={3} className="px-0 AddAuthor">
+        <Col xs={12} className="px-0 AddAuthor">
           <IconContext.Provider
             value={{
               color: "blue",
