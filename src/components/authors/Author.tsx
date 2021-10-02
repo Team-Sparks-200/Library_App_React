@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Col, Row} from "react-bootstrap";
 import { FiEdit,FiTrash2 } from "react-icons/fi";
 import { IconContext } from "react-icons";
+import DeletePopup from "../common/DeletePopUp";
 
 export interface IAuthor {
     name:string
@@ -9,10 +10,16 @@ export interface IAuthor {
 
 type AuthorProps = {
     author: IAuthor,
-    index: number
+    index: number,
+    onEditClicked: (bool:boolean, index:number) => void
+    onAuthorDelete: (id:number) => void
 }
 
 const Author: React.FC<AuthorProps> = (props) => {
+    const [showDeletePopup, setShowDeletePopup] = useState<boolean>(false);
+    const handleDeletePopupClose = () => setShowDeletePopup(false);
+    const handleDeletePopupShow = () => setShowDeletePopup(true);
+
     return (
         <React.Fragment>
             <Row xs={12} className="ps-0 author py-0">
@@ -21,12 +28,17 @@ const Author: React.FC<AuthorProps> = (props) => {
                 </Col>
                 <Col xs="4" className="text-end px-0">
                     <IconContext.Provider value={{ size: "1em" }}>
-                        <FiEdit className="mx-2 icons text-warning" />
-                        <FiTrash2 className="icons text-danger" />
+                        <FiEdit className="mx-2 icons text-warning" onClick={() => props.onEditClicked(
+                            true, props.index)}  />
+                        <FiTrash2 className="icons text-danger"
+                       onClick={handleDeletePopupShow} />
                     </IconContext.Provider>
                 </Col>
             </Row>
-        </React.Fragment>
+            {showDeletePopup && <DeletePopup onDeletePopupClose={handleDeletePopupClose}
+                                             showDeletePopup={showDeletePopup}
+                                             onDelete={() => props.onAuthorDelete(props.index)}/>
+            } </React.Fragment>
     );
 };
 
