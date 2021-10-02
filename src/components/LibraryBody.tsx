@@ -15,11 +15,11 @@ const LibraryBody: React.FC = () => {
 
   return (
     <React.Fragment>
-      <Row className="library_body mt-4 flex-column-reverse flex-lg-row">
-        <Col xs={12} md={6} className="px-5 mb-5">
+      <Row className="library_body mt-4 d-flex flex-lg-row flex-md-row flex-column-reverse">
+        <Col xs={12} md={6} lg={6} className="px-5 mb-5">
           <Books />
         </Col>
-        <Col xs={12} md={6} className="px-5 mb-5">
+        <Col xs={12} md={6} lg={6} className="px-5 mb-5">
           <Authors authors={authors} onAuthorsChange={handleOnAuthorsChange}/>
         </Col>
       </Row>
