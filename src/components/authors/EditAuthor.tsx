@@ -1,22 +1,18 @@
-import React, {ChangeEvent, FormEvent, useState} from 'react';
+import React, {ChangeEvent, FormEvent, useEffect, useState} from 'react';
+import {IAuthor} from "./Author";
 import {Col, Form, Row} from "react-bootstrap";
 import {FiXCircle} from "react-icons/fi";
 import FormButton from "../common/Formbutton";
-import {IAuthor} from "./Author";
 
-export interface IPopupMessage {
-    message:string,
-    className:string
-}
-
-type AuthorFormProps = {
+type EditAuthorrops = {
+    editClicked : boolean,
     onCloseClick: () => void,
-    onCreateAuthorSubmit: (newAuthor: IAuthor) => void,
-    editClicked: boolean
+    onUpdateAuthorSubmit:(newAuthor: IAuthor) => void,
+    authorNameToUpdate: string
 }
 
-const AuthorForm: React.FC<AuthorFormProps> = (props) => {
-    const {onCloseClick,onCreateAuthorSubmit,editClicked} = props;
+const EditAuthor: React.FC<EditAuthorrops> = (props) => {
+
     const [author, setAuthor] = useState<string | null>(null);
     const [isFormValidate, setIsFormValidate] = useState<boolean>(false);
 
@@ -28,25 +24,28 @@ const AuthorForm: React.FC<AuthorFormProps> = (props) => {
         e.preventDefault();
         if (author === '' || author === null) {
             setIsFormValidate(true);
-        }
-        else {
+        } else {
             const newAuthor: IAuthor = {
-                name: author,
+                name : author,
             }
-            onCreateAuthorSubmit(newAuthor);
-            onCloseClick();
+            props.onUpdateAuthorSubmit(newAuthor);
+            props.onCloseClick();
         }
     }
+
+    useEffect(() => {
+        setAuthor(props.authorNameToUpdate);
+    },[props.authorNameToUpdate])
 
     return (
         <Col xs={12} lg={10} className="form mt-4 px-0 ms-1">
             <Col xs={12}>
                 <Row className="form-title ps-2">
                     <Col xs={9} className="p-0">
-                        <h5><label>Create Author</label></h5>
+                        <h5><label>Update Author</label></h5>
                     </Col>
                     <Col xs={3} className="ps-4 closebtn">
-                        <FiXCircle size={18} onClick={() => onCloseClick()}/>
+                        <FiXCircle size={18} onClick={() => props.onCloseClick()}/>
                     </Col>
                 </Row>
             </Col>
@@ -54,13 +53,14 @@ const AuthorForm: React.FC<AuthorFormProps> = (props) => {
                 <Form className="mt-3 col-md-10" onSubmit={handleOnSubmit} validated={isFormValidate} noValidate >
                     <Form.Group>
                         <Form.Label className="mb-0 ms-1 form-label">Name of Author</Form.Label>
-                        <Form.Control type="text" required onChange={handleOnInputChange} />
+                        <Form.Control type="text" required onChange={handleOnInputChange} value={
+                            author ? author : ''}/>
                     </Form.Group>
-                    <FormButton editClicked={editClicked}/>
+                    <FormButton editClicked={props.editClicked}/>
                 </Form>
             </Col>
         </Col>
     );
 };
 
-export default AuthorForm;
+export default EditAuthor;
