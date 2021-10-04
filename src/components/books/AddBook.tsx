@@ -3,10 +3,14 @@ import { Col, Row } from "react-bootstrap";
 import { FiPlus } from "react-icons/fi";
 import { IconContext } from "react-icons";
 
-const AddBook: React.FC = () => {
+type AddBookProps = {
+  onAddClick: (bool: boolean) => void;
+};
+
+const AddBook: React.FC<AddBookProps> = (props) => {
   return (
-    <Row xs={2} className="AddBook mt-3">
-      <Col xs={12} className="px-0">
+    <Row className="AddBook mt-3 p-0" onClick={() => props.onAddClick(true)}>
+      <Col className="p-0">
         <IconContext.Provider
           value={{
             color: "blue",
@@ -14,8 +18,8 @@ const AddBook: React.FC = () => {
             size: "1.5em",
           }}
         >
-          <FiPlus className="px-0 me-2" />
-          <span className="my-2">Add Book</span>
+          <FiPlus className="m-0 p-0" />
+          <span>Add Book</span>
         </IconContext.Provider>
       </Col>
     </Row>
