@@ -1,6 +1,6 @@
 @import "../variables/variables";
 
-.NoBookList {
+.NoBookListed {
   font-style: italic;
   font-size: 1.1em;
   font-weight: 600;
@@ -23,19 +23,68 @@
   }
 }
 
-.book{
-  box-sizing: border-box;
-  padding-left: 2px;
+.book-form {
+    .create-book {
+      color:  $form-header-color;
+      text-decoration: underline;
+      font-weight: 500;
+      font-size: 1.3em;
+    }
 
-  li {
-    font-size: 1.4em;
+    .close-button {
+      cursor: pointer;
+    }
+
+    .form-label {
+      font-size: small;
+      padding: 0;
+      margin: 0;
+    }
+
+    .form-control {
+      border-radius: 0;
+      border: 1px solid #959595;
+    }
+
+    .select-control__control {
+      height: calc(1.5em + 0.5rem + 2px);
+      min-height: calc(1.5em + 0.5rem + 2px);
+      align-content: center;
+    }
+
+    .invalid-feedback {
+      font-size: .6em;
+      font-weight: 500;
+    }
+
+    .form-button {
+      background-color: $btn-back-color;
+      font-size: .9em;
     font-weight: 500;
+    }
+
+    .form-label {
+        color: $form-header-color;
+        font-size: 1em;
+      }
   }
+
+
+.book {
+  font-size: 1.4em;
+  font-weight: 500;
+  text-transform: capitalize;
   .icons {
     cursor: pointer;
-  }
-
-  :hover{
-    background-color: $author-hover-back-color;
+    opacity: 0;
   }
 }
+  .book:hover{
+    background-color: $author-hover-back-color;
+
+    .icons {
+      opacity: 1;
+    }
+  }
+
+
