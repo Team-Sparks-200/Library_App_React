@@ -8,9 +8,16 @@
         border-bottom: 2px solid $form-header-color;
       }
     }
-    .form-input {width: 100%;}
+
   }
-.closebtn{cursor: pointer;}
+  .form-input {
+    width: 100%;
+    border: 2px solid $input-border-color;
+    border-radius: 0;
+  }
+  .closebtn{
+    cursor: pointer;
+  }
   .form-button {
     background-color: $btn-back-color;
     font-size: .9em;

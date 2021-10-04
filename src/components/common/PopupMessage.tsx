@@ -31,11 +31,11 @@ const PopupMessage: React.FC<PopupMessageProps> = (props) => {
         <React.Fragment>
             {isPopupMessageShow &&
             <Row className={popupMessage?.className + " p-1 d-flex align-items-center pop_up"}>
-                <Col xs={11} className='d-flex align-items-center'>
+                <Col lg={11} className='d-flex align-items-center'>
                     <FiMessageCircle className="me-1" size={22}/>
                     {popupMessage?.message}
                 </Col>
-                <Col xs={1} className="pe-0">
+                <Col lg={1} className="pe-0">
                     <FiX onClick={handleClosePopupMessage} size={22}/>
                 </Col>
             </Row>

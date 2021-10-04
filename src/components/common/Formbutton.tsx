@@ -7,7 +7,7 @@ type Formbuttonprops = {
 
 const Formbutton: React.FC<Formbuttonprops> = (props) => {
     return (
-        <Button className="form-button float-end mt-2 py-1 px-4" type="submit">
+        <Button className="form-button float-end my-4 py-1 px-4" type="submit">
             {props.editClicked ? "Update" : "Create" }
         </Button>
     );

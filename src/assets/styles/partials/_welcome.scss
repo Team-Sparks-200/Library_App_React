@@ -1,12 +1,6 @@
 @import "../variables/variables";
 
 .welcome {
-    @media (min-width: 576px) {
-     .h1 {
-      font-size: 2em; 
-      }
-    }
-
     h1{
         font-weight: 700;
         font-size: 3em;
@@ -20,6 +14,10 @@
     .credits{
         font-weight: 500;
         position: relative;
-        left: 4;
+    }
+    @media (max-width: 576px) {
+        h1 {
+            font-size: 2em;
+        }
     }
 }
