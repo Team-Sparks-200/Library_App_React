@@ -4,6 +4,8 @@ import {FiXCircle} from "react-icons/fi";
 import FormButton from "../common/Formbutton";
 import {IAuthor} from "./Author";
 
+
+
 export interface IPopupMessage {
     message:string,
     className:string
@@ -21,7 +23,13 @@ const AuthorForm: React.FC<AuthorFormProps> = (props) => {
     const [isFormValidate, setIsFormValidate] = useState<boolean>(false);
 
     const handleOnInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setAuthor(e.target.value);
+        setIsFormValidate(false);
+        let author = String(e.target.value);
+        author = author.trim();
+        if(author === ""){
+            setIsFormValidate(true);
+        }
+        setAuthor(author);
     }
 
     const handleOnSubmit = (e: FormEvent) => {
@@ -34,8 +42,9 @@ const AuthorForm: React.FC<AuthorFormProps> = (props) => {
                 name: author,
             }
             onCreateAuthorSubmit(newAuthor);
-
+            onCloseClick();
         }
+
     }
 
     return (
@@ -51,7 +60,7 @@ const AuthorForm: React.FC<AuthorFormProps> = (props) => {
                 </Row>
             </Col>
             <Col xs={12} lg={{span: 11, offset: 1}} className="px-0">
-                <Form className="mt-3 col-md-10" onSubmit={handleOnSubmit} validated={isFormValidate} noValidate >
+                <Form className="mt-3 col-md-10" onSubmit={handleOnSubmit} validated={isFormValidate} noValidate>
                     <Form.Group>
                         <Form.Label className="mb-0 ms-lg-1 form-label">Name of Author</Form.Label>
                         <Form.Control type="text" required onChange={handleOnInputChange} className='form-input py-lg-1'/>
