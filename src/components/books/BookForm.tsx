@@ -102,23 +102,23 @@ const BookForm: React.FC<BookFormProps> = (props) => {
   };
 
   return (
-    <Row className="book-form p-0 mt-3">
-      <Col xs={8} className="p-0">
+    <Row className="book-form p-0 mt-5 m-1" lg={8}>
+      <Col xs={8} className="p-0 ">
         <span className="create-book">Create Book</span>
-        <FiXCircle
+        <FiXCircle size={22}
           className="close-button float-end"
           onClick={() => onCloseClick()}
         />
       </Col>
-      <Col xs={8} className="ml-4 p-0 mt-3">
-        <Form
+      <Col xs={12} className="p-0 mt-3" lg={8}>
+        <Form 
           onSubmit={handleOnSubmit}
           validated={isFormValidate}
           noValidate
-          className="ml-3"
+          className="ms-lg-5"
         >
-          <Form.Group>
-            <Form.Label className="mb-0 ms-1 form-label">Book Title</Form.Label>
+          <Form.Group >
+            <Form.Label className="mb-0 ms-1 form-label mt-2">Book Title</Form.Label>
             <Form.Control
               size="sm"
               required
@@ -130,7 +130,7 @@ const BookForm: React.FC<BookFormProps> = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
-            <Form.Label className="mb-0 ms-1 form-label">ISBN</Form.Label>
+            <Form.Label className="mb-0 ms-1 form-label mt-1">ISBN</Form.Label>
             <Form.Control
               size="sm"
               required
@@ -142,7 +142,7 @@ const BookForm: React.FC<BookFormProps> = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
-            <Form.Label className="mb-0 ms-1 form-label">Author</Form.Label>
+            <Form.Label className="mb-0 ms-1 form-label mt-1">Author</Form.Label>
             <Select
               className="select-control"
               classNamePrefix="select-control"
@@ -157,7 +157,7 @@ const BookForm: React.FC<BookFormProps> = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
           <Button
-            className="form-button mt-2 px-4 py-1 float-end"
+            className="form-button mt-4 px-4 py-1 float-end"
             type="submit"
           >
             Create

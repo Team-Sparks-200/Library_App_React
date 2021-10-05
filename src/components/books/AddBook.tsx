@@ -9,21 +9,21 @@ type AddBookProps = {
 
 const AddBook: React.FC<AddBookProps> = (props) => {
   return (
-    <Row className="AddBook mt-3 p-0" onClick={() => props.onAddClick(true)}>
-      <Col className="p-0">
-        <IconContext.Provider
-          value={{
-            color: "blue",
-            className: "global-class-name",
-            size: "1.5em",
-          }}
-        >
-          <FiPlus className="m-0 p-0" />
-          <span>Add Book</span>
-        </IconContext.Provider>
-      </Col>
-    </Row>
-  );
+      <Row xs={3} className="mt-3 ps-2" onClick={() => props.onAddClick(true)}>
+        <Col xs={12} className="px-0 AddAuthor d-flex align-items-end">
+          <IconContext.Provider
+            value={{
+              color: "#0f4aa6",
+              className: "global-class-name",
+              size: "1.5em",
+            }}
+          >
+            <FiPlus className="px-0 me-2" />
+            <span className="">Add Book</span>
+          </IconContext.Provider>
+        </Col>
+      </Row>
+    );
 };
 
 export default AddBook;

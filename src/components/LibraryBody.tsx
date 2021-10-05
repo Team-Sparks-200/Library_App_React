@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Col, Row } from "react-bootstrap";
 import Authors from "./Authors";
-import Books from "./books/books";
+import Books from "./Books";
 import {IAuthor} from "./authors/Author";
 
 const LibraryBody: React.FC = () => {
