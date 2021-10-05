@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FormEvent, useState} from 'react';
-import {Col, Form, Row} from "react-bootstrap";
+import {Col, Form, FormControl, Row} from "react-bootstrap";
 import {FiXCircle} from "react-icons/fi";
 import FormButton from "../common/Formbutton";
 import {IAuthor} from "./Author";
@@ -34,27 +34,30 @@ const AuthorForm: React.FC<AuthorFormProps> = (props) => {
                 name: author,
             }
             onCreateAuthorSubmit(newAuthor);
-            onCloseClick();
+
         }
     }
 
     return (
-        <Col xs={12} lg={10} className="form mt-4 px-0 ms-1">
-            <Col xs={12}>
-                <Row className="form-title ps-2">
-                    <Col xs={9} className="p-0">
+        <Col xs={12} lg={10} className="form mt-5 px-0 ms-lg-2">
+            <Col xs={12} lg={12}>
+                <Row className="form-title" xs={12} lg={10}>
+                    <Col lg={9} xs={8} className="p-lg-1 d-flex align-items-center">
                         <h5><label>Create Author</label></h5>
                     </Col>
-                    <Col xs={3} className="ps-4 closebtn">
-                        <FiXCircle size={18} onClick={() => onCloseClick()}/>
+                    <Col lg={3} xs={4} className="text-end text-lg-start">
+                        <FiXCircle size={22} onClick={() => onCloseClick()} className="ms-lg-3 ms-4 closebtn"/>
                     </Col>
                 </Row>
             </Col>
             <Col xs={12} lg={{span: 11, offset: 1}} className="px-0">
                 <Form className="mt-3 col-md-10" onSubmit={handleOnSubmit} validated={isFormValidate} noValidate >
                     <Form.Group>
-                        <Form.Label className="mb-0 ms-1 form-label">Name of Author</Form.Label>
-                        <Form.Control type="text" required onChange={handleOnInputChange} />
+                        <Form.Label className="mb-0 ms-lg-1 form-label">Name of Author</Form.Label>
+                        <Form.Control type="text" required onChange={handleOnInputChange} className='form-input py-lg-1'/>
+                        <FormControl.Feedback type='invalid'>
+                            <p className="text-danger fw-bold">Please Enter Author Name</p>
+                        </FormControl.Feedback>
                     </Form.Group>
                     <FormButton editClicked={editClicked}/>
                 </Form>

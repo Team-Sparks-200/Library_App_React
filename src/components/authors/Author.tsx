@@ -22,15 +22,15 @@ const Author: React.FC<AuthorProps> = (props) => {
 
     return (
         <React.Fragment>
-            <Row xs={12} className="ps-0 author py-0">
-                <Col xs="8" className="ps-0">
+            <Row xs={12} className="ps-0 author py-1 d-flex align-items-center">
+                <Col xs="8" lg="9" className="ps-0">
                     <h5 className="p-0">{props.index + 1}. {props.author.name}</h5>
                 </Col>
-                <Col xs="4" className="text-end px-0">
+                <Col xs="4" lg="3" className="text-end">
                     <IconContext.Provider value={{ size: "1em" }}>
-                        <FiEdit className="mx-2 icons text-warning" onClick={() => props.onEditClicked(
+                        <FiEdit className="mx-lg-2 icons text-warning" onClick={() => props.onEditClicked(
                             true, props.index)}  />
-                        <FiTrash2 className="icons text-danger"
+                        <FiTrash2 className="icons text-danger mx-1 "
                        onClick={handleDeletePopupShow} />
                     </IconContext.Provider>
                 </Col>

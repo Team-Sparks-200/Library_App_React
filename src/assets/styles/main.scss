@@ -1,10 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
 @import "variables/variables";
-* {
-  padding: 0;
-  margin: 0;
-  font-family: 'Raleway', sans-serif;
-}
+@import "partials/layout";
 @import "partials/welcome";
 @import "partials/authors";
 @import "partials/books";

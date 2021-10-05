@@ -7,7 +7,7 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = (props) => {
   return (
-    <Col xs={12} className='header pb-2 border-bottom px-0 border-2 border-dark mb-4'>
+    <Col xs={12} className='header pb-1 border-bottom px-0 border-2 border-dark mb-4'>
       <h2>{props.header}</h2>
     </Col>
   );
