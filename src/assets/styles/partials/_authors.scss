@@ -7,11 +7,11 @@
   color: $no-item-text-color;
 }
 
-.AddAuthor{
+.AddAuthor {
   box-sizing: border-box;
   cursor: pointer;
 
-  span{
+  span {
     font-size: 1em;
     font-weight: 500;
   }
@@ -26,10 +26,19 @@
     opacity: 0;
   }
 }
-  .author:hover{
-    background-color: $author-hover-back-color;
+.author:hover {
+  background-color: $author-hover-back-color;
+
+  .icons {
+    opacity: 1;
+  }
+}
+@media (max-width: 768px) {
+  .author {
+    background-color: none;
 
     .icons {
       opacity: 1;
     }
   }
+}
