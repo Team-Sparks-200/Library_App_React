@@ -7,7 +7,7 @@ import DeletePopup from "../common/DeletePopUp";
 
 export interface IBook {
   name: string;
-  isbn: string;
+  price: string;
   author: IAuthor;
 }
 
@@ -26,20 +26,20 @@ const Book: React.FC<BookProps> = (props) => {
 
   return (
     <React.Fragment>
-      <Row className="ps-0 book py-0">
-        <Col xs={8} className="p-0">
-          <h4 className="my-0">
+      <Row className="ps-0 author py-1 d-flex align-items-center">
+        <Col xs="8" lg="9" className="ps-0">
+          <h5 className="my-0">
             {index + 1}. {book.name}
-          </h4>
+          </h5>
         </Col>
-        <Col xs={4} className="text-end px-0">
+        <Col xs="4" lg="3" className="text-end">
           <IconContext.Provider value={{ size: "1em" }}>
             <FiEdit
-              className="mx-2 icons text-warning"
+              className="mx-lg-2 icons text-warning"
               onClick={() => onUpdateClick(true, props.index, props.book)}
             />
             <FiTrash2
-              className="icons text-danger"
+              className="icons text-danger mx-1 "
               onClick={handleDeletePopupShow}
             />
           </IconContext.Provider>
