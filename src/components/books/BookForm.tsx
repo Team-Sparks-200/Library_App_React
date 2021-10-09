@@ -4,6 +4,7 @@ import { FiXCircle } from "react-icons/fi";
 import { IAuthor } from "../authors/Author";
 import { IBook } from "./Book";
 import Select from "react-select";
+import Price from "./Price";
 
 export interface IPopupMessage {
   message: string;
@@ -24,7 +25,7 @@ type BookFormProps = {
 const BookForm: React.FC<BookFormProps> = (props) => {
   const { onCloseClick, onCreateBookSubmit } = props;
   const [title, setTitle] = useState<string | null>(null);
-  const [isbn, setISBN] = useState<string | null>(null);
+  const [price, setPrice] = useState<string | null>(null);
   const [author, setAuthor] = useState<IAuthor | null>(null);
   const [isFormValidate, setIsFormValidate] = useState<boolean>(false);
   const [isSelectorValidate, setIsSelectorValidate] = useState<boolean>(false);
@@ -63,9 +64,9 @@ const BookForm: React.FC<BookFormProps> = (props) => {
       : setSelectorBorderColor("#6AB867");
     if (
       title === null ||
-      isbn === null ||
+      price === null ||
       title === "" ||
-      isbn === "" ||
+      price === "" ||
       author === null
     ) {
       setIsFormValidate(true);
@@ -73,7 +74,7 @@ const BookForm: React.FC<BookFormProps> = (props) => {
     } else {
       const newBook: IBook = {
         name: title,
-        isbn: isbn,
+        price: price,
         author: author,
       };
       props.onCreateBookSubmit(newBook);
@@ -81,8 +82,8 @@ const BookForm: React.FC<BookFormProps> = (props) => {
     }
   };
 
-  const handleOnISBNChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setISBN(e.target.value);
+  const handlePricehange = (price: string) => {
+    setPrice(price);
   };
   const handleOnTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -105,20 +106,23 @@ const BookForm: React.FC<BookFormProps> = (props) => {
     <Row className="book-form p-0 mt-5 m-1" lg={8}>
       <Col xs={8} className="p-0 ">
         <span className="create-book">Create Book</span>
-        <FiXCircle size={22}
+        <FiXCircle
+          size={22}
           className="close-button float-end"
           onClick={() => onCloseClick()}
         />
       </Col>
       <Col xs={12} className="p-0 mt-3" lg={8}>
-        <Form 
+        <Form
           onSubmit={handleOnSubmit}
           validated={isFormValidate}
           noValidate
           className="ms-lg-5"
         >
-          <Form.Group >
-            <Form.Label className="mb-0 ms-1 form-label mt-2">Book Title</Form.Label>
+          <Form.Group>
+            <Form.Label className="mb-0 ms-1 form-label mt-2">
+              Book Title
+            </Form.Label>
             <Form.Control
               size="sm"
               required
@@ -130,19 +134,12 @@ const BookForm: React.FC<BookFormProps> = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
-            <Form.Label className="mb-0 ms-1 form-label mt-1">ISBN</Form.Label>
-            <Form.Control
-              size="sm"
-              required
-              type="text"
-              onChange={handleOnISBNChange}
-            />
-            <Form.Control.Feedback type="invalid">
-              Please enter ISBN
-            </Form.Control.Feedback>
+            <Price onPriceChange={handlePricehange} currentPrice={"0"} />
           </Form.Group>
           <Form.Group>
-            <Form.Label className="mb-0 ms-1 form-label mt-1">Author</Form.Label>
+            <Form.Label className="mb-0 ms-1 form-label mt-2">
+              Author
+            </Form.Label>
             <Select
               className="select-control"
               classNamePrefix="select-control"
