@@ -19,16 +19,13 @@ type AuthorFormProps = {
 
 const AuthorForm: React.FC<AuthorFormProps> = (props) => {
     const {onCloseClick,onCreateAuthorSubmit,editClicked} = props;
-    const [author, setAuthor] = useState<string | null>(null);
+    const [author, setAuthor] = useState<string | null>("");
     const [isFormValidate, setIsFormValidate] = useState<boolean>(false);
 
     const handleOnInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setIsFormValidate(false);
         let author = String(e.target.value);
-        author = author.trim();
-        if(author === ""){
-            setIsFormValidate(true);
-        }
+        author = author.trimStart();
         setAuthor(author);
     }
 
@@ -42,15 +39,15 @@ const AuthorForm: React.FC<AuthorFormProps> = (props) => {
                 name: author,
             }
             onCreateAuthorSubmit(newAuthor);
-            onCloseClick();
+            setAuthor("");
         }
 
     }
 
     return (
         <Col xs={12} lg={10} className="form mt-5 px-0 ms-lg-2">
-            <Col xs={12} lg={12}>
-                <Row className="form-title" xs={12} lg={10}>
+            <Col xs={12} lg={12} md={12}>
+                <Row className="form-title" xs={12} lg={10} md={12}>
                     <Col lg={9} xs={8} className="p-lg-1 d-flex align-items-center">
                         <h5><label>Create Author</label></h5>
                     </Col>
@@ -60,10 +57,11 @@ const AuthorForm: React.FC<AuthorFormProps> = (props) => {
                 </Row>
             </Col>
             <Col xs={12} lg={{span: 11, offset: 1}} className="px-0">
-                <Form className="mt-3 col-md-10" onSubmit={handleOnSubmit} validated={isFormValidate} noValidate>
+                <Form className="mt-3 col-lg-10 col-md-12" onSubmit={handleOnSubmit} validated={isFormValidate} noValidate>
                     <Form.Group>
-                        <Form.Label className="mb-0 ms-lg-1 form-label">Name of Author</Form.Label>
-                        <Form.Control type="text" required onChange={handleOnInputChange} className='form-input py-lg-1'/>
+                        <Form.Label className="mb-1 form-label ms-1">Name of Author</Form.Label>
+                        <Form.Control type="text" required onChange={handleOnInputChange} className='form-input py-lg-1'
+                        value={String(author)}/>
                         <FormControl.Feedback type='invalid'>
                             <p className="text-danger fw-bold">Please Enter Author Name</p>
                         </FormControl.Feedback>

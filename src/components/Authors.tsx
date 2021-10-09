@@ -71,7 +71,7 @@ const Authors: React.FC<AuthorsProps> = (props) => {
                 return;
             }
             setAuthorNameToEdit(props.authors[indexToEdit].name);
-        }, [indexToEdit]);
+        }, [props.authors,indexToEdit]);
 
     return (
     <Row className="authors">
