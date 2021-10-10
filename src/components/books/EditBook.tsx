@@ -5,7 +5,6 @@ import { IAuthor } from "../authors/Author";
 import { IBook } from "./Book";
 import Feedback from "react-bootstrap/Feedback";
 import { Price } from "./Price";
-import Formbutton from './../common/Formbutton';
 
 type EditBookProps = {
   onCloseClick: () => void;
@@ -38,7 +37,7 @@ const EditBook: React.FC<EditBookProps> = (props) => {
     setBookTitle(e.target.value);
   };
 
-  const handlePricehange = (price: string) => {
+  const handlePriceChange = (price: string) => {
     setPrice(price);
   };
 
@@ -95,7 +94,7 @@ const EditBook: React.FC<EditBookProps> = (props) => {
           </Form.Group>
 
           <Form.Group>
-            <Price onPriceChange={handlePricehange} currentPrice={price} />
+            <Price onPriceChange={handlePriceChange} currentPrice={price} />
           </Form.Group>
 
           <Form.Group>

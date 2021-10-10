@@ -40,7 +40,7 @@ export const Price: React.FC<PriceProps> = (props) => {
     props.onPriceChange(value);
   };
 
-  console.log(props.currentPrice);
+
   return (
     <div className="row">
       <div className="col-12 mb-4">
@@ -53,7 +53,8 @@ export const Price: React.FC<PriceProps> = (props) => {
                 id="validationCustom01"
                 name="input-1"
                 className={`form-control ${className}`}
-                value={props.currentPrice != "0" ? props.currentPrice : value}
+                // value={value}
+                value={props.currentPrice == "0" ? value : props.currentPrice }
                 onValueChange={handleOnValueChange}
                 placeholder="Please enter a number"
                 prefix={prefix}
