@@ -67,7 +67,7 @@ const Authors: React.FC<AuthorsProps> = (props) => {
     }
 
         useEffect(() => {
-            if(indexToEdit === null || !props.authors){
+            if(indexToEdit === null || !props.authors || !props.authors[indexToEdit]){
                 return;
             }
             setAuthorNameToEdit(props.authors[indexToEdit].name);
