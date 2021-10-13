@@ -67,7 +67,7 @@ const Authors: React.FC<AuthorsProps> = (props) => {
     }
 
         useEffect(() => {
-            if(indexToEdit === null || !props.authors){
+            if(indexToEdit === null || !props.authors || !props.authors[indexToEdit]){
                 return;
             }
             setAuthorNameToEdit(props.authors[indexToEdit].name);
@@ -76,7 +76,7 @@ const Authors: React.FC<AuthorsProps> = (props) => {
     return (
     <Row className="authors">
       <Header header="Authors" />
-        {(!props.authors && props.authors === null) && <NoAuthorList/>}
+        {(!props.authors || props.authors.length === 0) && <NoAuthorList/>}
         {(props.authors && true) && <AuthorList onAuthorDelete={handleOnAuthorDelete} authors={props.authors} onEditClicked={handleEditButtonClick} />}
         <PopupMessage message={popupMessage} isPopupMessageShow={showPopupMessage}/>
         <AddAuthor onAddClick={handleAddAuthorForm}/>
