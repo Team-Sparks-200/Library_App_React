@@ -103,8 +103,8 @@ const BookForm: React.FC<BookFormProps> = (props) => {
   };
 
   return (
-    <Row className="book-form p-0 mt-5 m-1" lg={8}>
-      <Col xs={8} className="p-0 ">
+    <Row className="book-form p-0 mt-5 m-0" lg={8}>
+      <Col xs={12} lg={8} md={12} className="p-0 ">
         <span className="create-book">Create Book</span>
         <FiXCircle
           size={22}

@@ -26,7 +26,7 @@ const Book: React.FC<BookProps> = (props) => {
 
   return (
     <React.Fragment>
-      <Row className="ps-0 author py-1 d-flex align-items-center">
+      <Row xs={12} className="ps-0 book py-1 d-flex align-items-center">
         <Col xs="8" lg="9" className="ps-0">
           <h5 className="my-0">
             {index + 1}. {book.name}
