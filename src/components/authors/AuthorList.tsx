@@ -17,7 +17,8 @@ const AuthorList: React.FC<AuthorListProps> = (props) => {
                     {props.authors.map((author:IAuthor, index:number) =>{
                         return (
                             <ListGroup.Item key={index} className='border-0 px-0 me-0 py-0 my-1' >
-                                <Author onAuthorDelete={props.onAuthorDelete} onEditClicked={props.onEditClicked}  author={author} index={index}/>
+                                <Author onAuthorDelete={props.onAuthorDelete} onEditClicked={props.onEditClicked}
+                                        author={author} index={index}/>
                             </ListGroup.Item>
                         )
                     })
