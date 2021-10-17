@@ -1,11 +1,11 @@
 import React from "react";
 import {Button} from "react-bootstrap";
 
-type Formbuttonprops = {
+type FormButtonProps = {
     editClicked:boolean
 }
 
-const Formbutton: React.FC<Formbuttonprops> = (props) => {
+const FormButton: React.FC<FormButtonProps> = (props) => {
     return (
         <Button className="form-button float-end my-4 py-1 px-4" type="submit">
             {props.editClicked ? "Update" : "Create" }
@@ -13,4 +13,4 @@ const Formbutton: React.FC<Formbuttonprops> = (props) => {
     );
 }
 
-export default Formbutton;
+export default FormButton;

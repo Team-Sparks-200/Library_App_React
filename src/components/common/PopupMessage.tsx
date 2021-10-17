@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {FiMessageCircle, FiX} from "react-icons/fi";
-import {IPopupMessage} from "../authors/AuthorForm";
 import {Col, Row} from "react-bootstrap";
+import {IPopupMessage} from "./Types";
 
 type PopupMessageProps = {
     message: IPopupMessage | null,
@@ -23,7 +23,7 @@ const PopupMessage: React.FC<PopupMessageProps> = (props) => {
        }
        setTimeout(() => {
            setPopupMessageShow(false)
-       },2000);
+       },10000);
    },[props.message, props.isPopupMessageShow])
 
 
@@ -36,7 +36,7 @@ const PopupMessage: React.FC<PopupMessageProps> = (props) => {
                     {popupMessage?.message}
                 </Col>
                 <Col lg={1} xs={2} className="pe-0">
-                    <FiX onClick={handleClosePopupMessage} size={22}/>
+                    <FiX onClick={handleClosePopupMessage} className='popup-close' size={22}/>
                 </Col>
             </Row>
             }
