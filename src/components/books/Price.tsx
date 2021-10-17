@@ -15,9 +15,7 @@ export const Price: React.FC<PriceProps> = (props) => {
   const [value, setValue] = useState<string | number>(0);
   const [values, setValues] = useState<CurrencyInputOnChangeValues>();
   const [rawValue, setRawValue] = useState<string | undefined>(" ");
-  /**
-   * Handle validation
-   */
+
   const handleOnValueChange: CurrencyInputProps["onValueChange"] = (
     value,
     _,
@@ -40,7 +38,7 @@ export const Price: React.FC<PriceProps> = (props) => {
     props.onPriceChange(value);
   };
 
-  console.log(props.currentPrice);
+
   return (
     <div className="row">
       <div className="col-12 mb-4">
@@ -48,12 +46,13 @@ export const Price: React.FC<PriceProps> = (props) => {
         <form className="needs-validation">
           <div className="row">
             <div className="form-group col">
-              <label>Price</label>
+              <label className="mb-1 ms-lg-1 form-label">Price</label>
               <CurrencyInput
                 id="validationCustom01"
                 name="input-1"
                 className={`form-control ${className}`}
-                value={props.currentPrice != "0" ? props.currentPrice : value}
+                // value={value}
+                value={props.currentPrice == "0" ? value : props.currentPrice }
                 onValueChange={handleOnValueChange}
                 placeholder="Please enter a number"
                 prefix={prefix}

@@ -55,6 +55,9 @@ const EditAuthor: React.FC<EditAuthorrops> = (props) => {
                         <Form.Label className="mb-1 ms-lg-1 form-label">Name of Author</Form.Label>
                         <Form.Control type="text" required onChange={handleOnInputChange} className='form-input py-lg-1' value={
                             author ? author : ''}/>
+                        <Form.Control.Feedback type="invalid">
+                            Please enter author name
+                        </Form.Control.Feedback>
                     </Form.Group>
                     <FormButton editClicked={props.editClicked}/>
                 </Form>
