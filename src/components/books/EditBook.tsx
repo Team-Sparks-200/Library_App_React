@@ -1,12 +1,9 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
 import { FiXCircle } from "react-icons/fi";
-import { IAuthor } from "../authors/Author";
-import { IBook } from "./Book";
 import Feedback from "react-bootstrap/Feedback";
-import Select from "react-select";
 import { Price } from "./Price";
-import {selectorOptionType} from "./BookForm";
+import {IAuthor, IBook, selectorOptionType} from "../common/Types";
 
 type EditBookProps = {
   onCloseClick: () => void;
