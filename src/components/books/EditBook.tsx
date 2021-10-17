@@ -68,7 +68,7 @@ const EditBook: React.FC<EditBookProps> = (props) => {
               <label>Update Book</label>
             </h5>
           </Col>
-          <Col xs={3} className="ps-4 closebtn">
+          <Col xs={3} className="ps-4 close-btn">
             <FiXCircle size={18} onClick={() => props.onCloseClick()} />
           </Col>
         </Row>

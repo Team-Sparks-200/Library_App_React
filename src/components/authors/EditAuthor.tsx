@@ -45,7 +45,7 @@ const EditAuthor: React.FC<EditAuthorrops> = (props) => {
                         <h5><label>Update Author</label></h5>
                     </Col>
                     <Col lg={3} xs={4} className="text-end text-lg-start">
-                        <FiXCircle size={22} onClick={() => props.onCloseClick()} className="ms-lg-3 ms-4 closebtn"/>
+                        <FiXCircle size={22} onClick={() => props.onCloseClick()} className="ms-lg-3 ms-4 close-btn"/>
                     </Col>
                 </Row>
             </Col>

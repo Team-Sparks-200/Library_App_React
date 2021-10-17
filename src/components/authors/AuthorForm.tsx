@@ -52,7 +52,7 @@ const AuthorForm: React.FC<AuthorFormProps> = (props) => {
                         <h5><label>Create Author</label></h5>
                     </Col>
                     <Col lg={3} xs={4} className="text-end text-lg-start">
-                        <FiXCircle size={22} onClick={() => onCloseClick()} className="ms-lg-3 ms-4 closebtn"/>
+                        <FiXCircle size={22} onClick={() => onCloseClick()} className="ms-lg-3 ms-4 close-btn"/>
                     </Col>
                 </Row>
             </Col>

@@ -1,10 +1,10 @@
-.footer{
-  background-color: #a8abab;
-  position: relative;
+@import "../variables/variables";
+
+.footer {
+  background-color: $footer-bg-color;
+  position: fixed;
   bottom: 0;
 }
-@media (max-width: 768px) {
-  .footer{
-    display: none;
-  }
-}
+
+
+
