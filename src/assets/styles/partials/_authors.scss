@@ -21,11 +21,13 @@
   font-size: 1.4em;
   font-weight: 500;
   text-transform: capitalize;
+
   .icons {
     cursor: pointer;
     opacity: 0;
   }
 }
+
 .author:hover {
   background-color: $author-hover-back-color;
 
@@ -33,9 +35,10 @@
     opacity: 1;
   }
 }
-@media (max-width: 768px) {
+
+@media (max-width: $md-screen-size) {
   .author {
-    background-color: none;
+    background-color: transparent;
 
     .icons {
       opacity: 1;
