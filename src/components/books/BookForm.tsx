@@ -1,20 +1,9 @@
 import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { Col, Form, Row, Button } from "react-bootstrap";
 import { FiXCircle } from "react-icons/fi";
-import { IAuthor } from "../authors/Author";
-import { IBook } from "./Book";
 import Select from "react-select";
 import Price from "./Price";
-
-export interface IPopupMessage {
-  message: string;
-  className: string;
-}
-
-export interface selectorOptionType {
-  label: string;
-  value: IAuthor;
-}
+import {IAuthor, IBook, selectorOptionType} from "../common/Types";
 
 type BookFormProps = {
   onCloseClick: () => void;
