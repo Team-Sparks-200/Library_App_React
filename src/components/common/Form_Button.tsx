@@ -5,7 +5,7 @@ type FormButtonProps = {
     editClicked:boolean
 }
 
-const FormButton: React.FC<FormButtonProps> = (props) => {
+const Form_Button: React.FC<FormButtonProps> = (props) => {
     return (
         <Button className="form-button float-end my-4 py-1 px-4" type="submit">
             {props.editClicked ? "Update" : "Create" }
@@ -13,4 +13,4 @@ const FormButton: React.FC<FormButtonProps> = (props) => {
     );
 }
 
-export default FormButton;
+export default Form_Button;
