@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FormEvent, useEffect, useState} from 'react';
 import {Col, Form, Row} from "react-bootstrap";
 import {FiXCircle} from "react-icons/fi";
-import FormButton from "../common/FormButton";
+import Form_Button from "../common/Form_Button";
 import {IAuthor} from "../common/Types";
 
 type EditAuthorProps = {
@@ -64,7 +64,7 @@ const EditAuthor: React.FC<EditAuthorProps> = (props) => {
                             Please enter author name
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <FormButton editClicked={props.editClicked}/>
+                    <Form_Button editClicked={props.editClicked}/>
                 </Form>
             </Col>
         </Col>

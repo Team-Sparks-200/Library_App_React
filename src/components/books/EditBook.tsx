@@ -1,9 +1,12 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
 import { FiXCircle } from "react-icons/fi";
+import { IAuthor } from "../common/Types";
+import { IBook } from "../common/Types";
 import Feedback from "react-bootstrap/Feedback";
+import Select from "react-select";
 import { Price } from "./Price";
-import {IAuthor, IBook, selectorOptionType} from "../common/Types";
+import {selectorOptionType} from "../common/Types";
 
 type EditBookProps = {
   onCloseClick: () => void;
@@ -16,27 +19,46 @@ type EditBookProps = {
 const EditBook: React.FC<EditBookProps> = (props) => {
   const [bookTitle, setBookTitle] = useState<string>("");
   const [price, setPrice] = useState<string>("");
-  const [bookAuthor, setBookAuthor] = useState<string>("");
-  const [authorList, setAuthorList] = useState<IAuthor[] | null>(null);
+  const [bookAuthor, setBookAuthor] = useState<IAuthor | null>(null);
   const [isFormValidate, setIsFormValidate] = useState<boolean>(false);
   const [optionList, setOptionList] = useState<selectorOptionType[] | null>(
       null
   );
   const [selectorBorderColor, setSelectorBorderColor] =
       useState<string>("#959595");
+  const [isSelectorValidate, setIsSelectorValidate] = useState<boolean>(false);
+
 
   useEffect(() => {
     if (!props.book) {
       return;
     }
-    setBookAuthor(props.book.author.name);
+    setBookAuthor(props.book?.author);
     setBookTitle(props.book.name);
     setPrice(props.book.price);
   }, [props.book]);
 
   useEffect(() => {
-    setAuthorList(props.authorList);
+    if (!props.authorList) {
+      return;
+    }
+    let options: selectorOptionType[] = [];
+    for (let i = 0; i < props.authorList.length; i++) {
+      options.push({
+        label: props.authorList[i].name,
+        value: props.authorList[i],
+      });
+    }
+    setOptionList(options);
   }, [props.authorList])
+
+  const customStyles = {
+    control: (provided: any) => ({
+      ...provided,
+      border: `2px solid ${selectorBorderColor}`,
+      borderRadius: "0px",
+    }),
+  };
 
   const handleOnTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setBookTitle(e.target.value);
@@ -46,12 +68,21 @@ const EditBook: React.FC<EditBookProps> = (props) => {
     setPrice(price);
   };
 
-  const handleOnAuthorChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setBookAuthor(e.target.value);
+  const handleOnAuthorChange = (option: any) => {
+    if (option) {
+      setBookAuthor(option.value);
+      setIsSelectorValidate(false)
+      setSelectorBorderColor("#198754");
+    } else {
+      setBookAuthor(null);
+      setSelectorBorderColor("#f80046");
+    }
   };
 
   const handleOnUpdateAuthor = () => {
-    if (bookTitle === '' || bookTitle===null || bookAuthor === '' || bookAuthor===null) {
+    if (bookTitle === '' || bookTitle===null || bookAuthor===null ||  price === null || price === "") {
+
+      if(bookAuthor===null) setIsSelectorValidate(true);
       setIsFormValidate(true);
     }
     else {
@@ -59,8 +90,9 @@ const EditBook: React.FC<EditBookProps> = (props) => {
       updatedBook = {
         name: bookTitle,
         price: price,
-        author: {name: bookAuthor},
+        author: bookAuthor
       };
+      setIsSelectorValidate(false)
       props.onUpdateAuthor(props.index, updatedBook);
     }
   };
@@ -74,54 +106,55 @@ const EditBook: React.FC<EditBookProps> = (props) => {
         <Col xs={12} className="p-0 mt-3" lg={8}>
 
           <Form
-            className="ms-lg-5"
-          onSubmit={props.onCloseClick}
-            validated={isFormValidate}
-          noValidate
-        >
-          <Form.Group>
-            <Form.Label className="mb-0 ms-1 form-label mt-2">Book Title</Form.Label>
-            <Form.Control
-                size="sm"
-              type="text"
-              onChange={handleOnTitleChange}
-              value={bookTitle ? bookTitle : ''}
-              required
-            />
-            <Form.Control.Feedback type="invalid">
-              Please enter book title
-            </Form.Control.Feedback>
-          </Form.Group>
-
-          <Form.Group>
-            <Price onPriceChange={handlePriceChange} currentPrice={price} />
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Label className="mb-0 ms-1 form-label mt-2">Author</Form.Label>
-            <Form.Control
-              as="select"
-              onChange={handleOnAuthorChange}
-              value={bookAuthor ? bookAuthor : ''}
-              required
-            >
-              {authorList?.map((author) => {
-                return <option value={author.name}> {author.name}</option>;
-              })}
-            </Form.Control>
-            <Feedback className="text-danger font-weight-bold" type="invalid">
-              Please select author
-            </Feedback>
-          </Form.Group>
-
-          <Button
-            className="form-button mt-4 px-4 py-1 float-end"
-            onClick={handleOnUpdateAuthor}
+              className="ms-lg-5"
+              onSubmit={props.onCloseClick}
+              validated={isFormValidate}
+              noValidate
           >
-            Update
-          </Button>
-        </Form>
-       </Col>
+            <Form.Group>
+              <Form.Label className="mb-0 ms-1 form-label mt-2">Book Title</Form.Label>
+              <Form.Control
+                  size="sm"
+                  type="text"
+                  onChange={handleOnTitleChange}
+                  value={bookTitle ? bookTitle : ''}
+                  required
+              />
+              <Form.Control.Feedback type="invalid">
+                Please Enter Book Title
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Price onPriceChange={handlePriceChange} currentPrice={price} isValid={isSelectorValidate}/>
+
+            <Form.Group>
+              <Form.Label className="mb-0 ms-1 form-label mt-3">Author</Form.Label>
+              <Select
+                  className="select-control"
+                  classNamePrefix="select-control"
+                  isSearchable
+                  isClearable
+                  placeholder={null}
+                  options={!optionList ? [] : optionList}
+                  value={optionList?.filter(option => option.label === bookAuthor?.name)}
+                  styles={customStyles}
+                  onChange={handleOnAuthorChange}
+              />
+              {isSelectorValidate &&
+              <small className="text-danger fw-bold">
+                Please Select An Author
+              </small>
+              }
+            </Form.Group>
+
+            <Button
+                className="form-button mt-4 px-4 py-1 float-end"
+                onClick={handleOnUpdateAuthor}
+            >
+              Update
+            </Button>
+          </Form>
+        </Col>
       </Row>
   );
 };

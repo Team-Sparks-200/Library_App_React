@@ -1,6 +1,6 @@
 import React from 'react';
 import './assets/styles/main.scss'
-import LibraryApp from "./LibraryApp";
+import LibraryApp from "./Library_App";
 
 function App() {
     return <LibraryApp/>;

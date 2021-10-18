@@ -14,7 +14,7 @@ type BookFormProps = {
 const BookForm: React.FC<BookFormProps> = (props) => {
   const { onCloseClick, onCreateBookSubmit } = props;
   const [title, setTitle] = useState<string | null>(null);
-  const [price, setPrice] = useState<string | null>(null);
+  const [price, setPrice] = useState<string>("");
   const [author, setAuthor] = useState<IAuthor | null>(null);
   const [isFormValidate, setIsFormValidate] = useState<boolean>(false);
   const [isSelectorValidate, setIsSelectorValidate] = useState<boolean>(false);
@@ -23,6 +23,7 @@ const BookForm: React.FC<BookFormProps> = (props) => {
   );
   const [selectorBorderColor, setSelectorBorderColor] =
     useState<string>("#959595");
+  const [isPriceValidate, setIsPriceValidate] = useState<boolean>(false);
 
   useEffect(() => {
     if (!props.authorList) {
@@ -50,7 +51,7 @@ const BookForm: React.FC<BookFormProps> = (props) => {
     e.preventDefault();
     author === null
       ? setSelectorBorderColor("#f80046")
-      : setSelectorBorderColor("#6AB867");
+      : setSelectorBorderColor("#198754");
     if (
       title === null ||
       price === null ||
@@ -59,7 +60,8 @@ const BookForm: React.FC<BookFormProps> = (props) => {
       author === null
     ) {
       setIsFormValidate(true);
-      setIsSelectorValidate(true);
+      if(author===null) setIsSelectorValidate(true);
+      if(price === "") setIsPriceValidate(true);
     } else {
       const newBook: IBook = {
         name: title,
@@ -67,12 +69,17 @@ const BookForm: React.FC<BookFormProps> = (props) => {
         author: author,
       };
       props.onCreateBookSubmit(newBook);
+      setIsSelectorValidate( false)
+      setIsPriceValidate(false)
       props.onCloseClick();
     }
   };
 
-  const handlePricehange = (price: string) => {
-    setPrice(price);
+  const handlePriceChange = (price: string) => {
+    if(price===""){setIsPriceValidate(true)}
+    else{setPrice(price)
+      setIsPriceValidate(false)
+      }
   };
   const handleOnTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -81,12 +88,14 @@ const BookForm: React.FC<BookFormProps> = (props) => {
     if (option) {
       setAuthor(option.value);
       if (isSelectorValidate) {
-        setSelectorBorderColor("#6AB867");
+        setSelectorBorderColor("#198754");
+        setIsSelectorValidate(false)
       }
     } else {
       setAuthor(null);
       if (isSelectorValidate) {
         setSelectorBorderColor("#f80046");
+        setIsSelectorValidate(true)
       }
     }
   };
@@ -119,14 +128,14 @@ const BookForm: React.FC<BookFormProps> = (props) => {
               onChange={handleOnTitleChange}
             />
             <Form.Control.Feedback type="invalid">
-              Please enter book title
+              Please Enter Book Title
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
-            <Price onPriceChange={handlePricehange} currentPrice={"0"} />
+            <Price onPriceChange={handlePriceChange} currentPrice={price} isValid={isPriceValidate}/>
           </Form.Group>
           <Form.Group>
-            <Form.Label className="mb-0 ms-1 form-label mt-2">
+            <Form.Label className="mb-0 ms-1 form-label mt-3">
               Author
             </Form.Label>
             <Select
@@ -138,9 +147,11 @@ const BookForm: React.FC<BookFormProps> = (props) => {
               styles={customStyles}
               onChange={handleOnAuthorChange}
             />
-            <Form.Control.Feedback type="invalid">
-              Please select author
-            </Form.Control.Feedback>
+            {isSelectorValidate &&
+            <small className="text-danger fw-bold">
+              Please Select An Author
+            </small>
+            }
           </Form.Group>
           <Button
             className="form-button mt-4 px-4 py-1 float-end"

@@ -1,69 +1,48 @@
-import React, { FC, useState } from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import CurrencyInput, { formatValue } from "react-currency-input-field";
 import { CurrencyInputProps } from "react-currency-input-field";
-import { CurrencyInputOnChangeValues } from "react-currency-input-field/dist/components/CurrencyInputProps";
+import { Form} from "react-bootstrap";
+import NumberFormat from 'react-number-format';
+
+
 
 type PriceProps = {
   onPriceChange: (price: string) => void;
   currentPrice: string;
+  isValid: boolean
 };
 
 export const Price: React.FC<PriceProps> = (props) => {
-  const prefix = "Rs";
-  const [errorMessage, setErrorMessage] = useState("");
-  const [className, setClassName] = useState("");
-  const [value, setValue] = useState<string | number>(0);
-  const [values, setValues] = useState<CurrencyInputOnChangeValues>();
-  const [rawValue, setRawValue] = useState<string | undefined>(" ");
+  const [value, setValue] = useState<string>("");
 
-  const handleOnValueChange: CurrencyInputProps["onValueChange"] = (
-    value,
-    _,
-    values
-  ): void => {
-    setValues(values);
-    setRawValue(value === undefined ? "undefined" : value || " ");
-    if (!value) {
-      setClassName("");
-      setValue("");
+
+   useEffect(() => {
+     if(props.currentPrice){setValue(props.currentPrice)}
+   }, [props.currentPrice])
+
+  const handleOnValueChange = (e: ChangeEvent<HTMLInputElement>) => {
+       console.log(e.target.value)
+    if (!e.target.value) {
       return;
     }
-    if (Number.isNaN(Number(value))) {
-      setErrorMessage("Please enter a valid number");
-      setClassName("is-invalid");
-      return;
-    }
-    setClassName("is-valid");
-    setValue(value);
-    props.onPriceChange(value);
+    setValue(e.target.value);
+    props.onPriceChange(e.target.value);
   };
 
-
   return (
-    <div className="row">
-      <div className="col-12 mb-4">
-        ​
-        <form className="needs-validation">
-          <div className="row">
-            <div className="form-group col">
-              <label className="mb-1 ms-lg-1 form-label">Price</label>
-              <CurrencyInput
-                id="validationCustom01"
-                name="input-1"
-                className={`form-control ${className}`}
-                // value={value}
-                value={props.currentPrice == "0" ? value : props.currentPrice }
-                onValueChange={handleOnValueChange}
-                placeholder="Please enter a number"
-                prefix={prefix}
-                step={1}
-              />
-              <div className="invalid-feedback">{errorMessage}</div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+            <Form.Group>
+              <Form.Label className="mb-0 ms-1 form-label mt-3">Price</Form.Label>
+                <NumberFormat className="form-control  form-input py-lg-1"
+                              displayType={'input'}
+                              thousandSeparator={true}
+                              prefix={'Rs'}
+                              onChange={handleOnValueChange}
+                              value={value}
+                              required/>
+                <Form.Control.Feedback type="invalid">Please Enter The Price</Form.Control.Feedback>
+            </Form.Group>
   );
 };
 export default Price;
+
+
