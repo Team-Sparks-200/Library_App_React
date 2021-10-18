@@ -1,6 +1,4 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
-import CurrencyInput, { formatValue } from "react-currency-input-field";
-import { CurrencyInputProps } from "react-currency-input-field";
 import { Form} from "react-bootstrap";
 import NumberFormat from 'react-number-format';
 

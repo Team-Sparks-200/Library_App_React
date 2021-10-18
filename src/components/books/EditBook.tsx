@@ -1,9 +1,8 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import { FiXCircle } from "react-icons/fi";
 import { IAuthor } from "../common/Types";
 import { IBook } from "../common/Types";
-import Feedback from "react-bootstrap/Feedback";
 import Select from "react-select";
 import { Price } from "./Price";
 import {selectorOptionType} from "../common/Types";
