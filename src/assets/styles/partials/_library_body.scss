@@ -1,0 +1,11 @@
+@import "../variables/variables";
+
+.library-body {
+  .row {
+    flex-direction: column-reverse;
+  }
+
+  .header {
+    border-bottom: 2px solid $header-border-color;
+  }
+}
